@@ -31,7 +31,7 @@ app.on("ready", () => {
         webviewTag: true,
         // nativeWindowOpen: true,
       },
-      width: 450,
+      width: 900,
       height: 550,
     },
     tray,
@@ -43,7 +43,6 @@ app.on("ready", () => {
 
   mb.on("ready", () => {
     const { window } = mb;
-
 
     if (process.platform !== "darwin") {
       window.setSkipTaskbar(true);
@@ -113,6 +112,13 @@ app.on("ready", () => {
         mb.app.focus();
       }
     });
+
+    globalShortcut.register("Escape", () => {
+      if (window.isVisible()) {
+        mb.hideWindow();
+      }
+      mb.app.focus();
+    }); 
 
     Menu.setApplicationMenu(menu);
 
